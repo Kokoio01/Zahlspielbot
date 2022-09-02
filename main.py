@@ -50,4 +50,4 @@ async def regeln(ctx):
 async def github(ctx):
     await ctx.respond("Hier ist meine Github Page: https://github.com/Kokoio01/Zahlenspielbot")
 
-bot.run("MTAxNDkxMDQyNDQ2Mzk3ODUzNg.GWQmM_.BRtI15WWMh4to-sp1hsuH9wQfxR3HeCcnNvWQs")
+bot.run("...Bot Tocken...")
