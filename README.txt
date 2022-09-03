@@ -1,4 +1,4 @@
-#Zahlenspielbot
+Zahlenspielbot
 
 Inspiration from https://sites.google.com/view/pbtruger/python-programme
 
