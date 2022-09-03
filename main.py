@@ -6,7 +6,9 @@ from discord.commands import Option
 Regel = "Rate eine Zahl zwischen 1 und 100"
 Zufall = random.randint(1,100)
 Versuche = 0
-bot = discord.Bot()
+bot = discord.Bot(
+    activity=discord.Activity(type=discord.ActivityType.playing, name="/rate")
+)
 
 @bot.event
 async def on_ready():
@@ -39,8 +41,6 @@ async def rate(ctx, zahl: discord.Option(discord.SlashCommandOptionType.integer)
         Zufall = random.randint(1, 100)
         await ctx.send("Neue Zahl")
         print(Zufall)
-
-
 
 @bot.slash_command(name="regeln", description="erklärt die Regeln", guild_ids=[1011591245505761350])
 async def regeln(ctx):
