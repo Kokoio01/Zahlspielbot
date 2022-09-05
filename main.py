@@ -15,7 +15,7 @@ async def on_ready():
     print(f"{bot.user} is ready and online!")
     print(Zufall)
 
-@bot.slash_command(name="rate", description="Rate eine Zahl", guild_ids=[1011591245505761350])
+@bot.slash_command(name="rate", description="Rate eine Zahl")
 async def rate(ctx, zahl: discord.Option(discord.SlashCommandOptionType.integer)):
     global Zufall
     global Versuche
@@ -42,11 +42,11 @@ async def rate(ctx, zahl: discord.Option(discord.SlashCommandOptionType.integer)
         await ctx.send("Neue Zahl")
         print(Zufall)
 
-@bot.slash_command(name="regeln", description="erklärt die Regeln", guild_ids=[1011591245505761350])
+@bot.slash_command(name="regeln", description="erklärt die Regeln")
 async def regeln(ctx):
     await ctx.respond(Regel)
 
-@bot.slash_command(name="github", description="Zeigt die GitHub Page vom Bot", guild_ids=[1011591245505761350])
+@bot.slash_command(name="github", description="Zeigt die GitHub Page vom Bot")
 async def github(ctx):
     await ctx.respond("Hier ist meine Github Page: https://github.com/Kokoio01/Zahlenspielbot")
 
