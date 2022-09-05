@@ -37,6 +37,7 @@ async def rate(ctx, zahl: discord.Option(discord.SlashCommandOptionType.integer)
                 await ctx.send("Die Zahl ist kleiner als 50")
     if zahl == Zufall:
         await ctx.respond("Richtig!!")
+        await ctx.send(f"Du hast {Versuche} mal Geraten")
         Versuche = 0
         Zufall = random.randint(1, 100)
         await ctx.send("Neue Zahl")
@@ -50,4 +51,4 @@ async def regeln(ctx):
 async def github(ctx):
     await ctx.respond("Hier ist meine Github Page: https://github.com/Kokoio01/Zahlenspielbot")
 
-bot.run("...Bot Tocken...")
+bot.run("MTAxNDkxMDQyNDQ2Mzk3ODUzNg.GdGFxK.pR-ZvS_rHRPMfT93HHH0SZ-T7uQOMgnXajPBaY")
