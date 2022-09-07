@@ -9,8 +9,10 @@ Quick Start Guide:
 
 2.Add the Bot to your Guild
 
-3.Add the Bot Tocken at the end of the file
+3.Add the Bot Token at the end of the file
 
 4.Install the py-cord library: pip install py-cord
+
+5. Create Score.json
 
 5.Run the File
