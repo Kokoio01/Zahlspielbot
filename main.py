@@ -1,24 +1,29 @@
 import discord
 import random
-import os
+import sqlite3
 from discord.commands import Option
 
 Regel = "Rate eine Zahl zwischen 1 und 100"
-Zufall = random.randint(1,100)
+Zufall = random.randint(1, 100)
 Versuche = 0
+got4 = 0
+get4 = 0
+conn = sqlite3.connect("Score.db")
+c =conn.cursor()
 bot = discord.Bot(
     activity=discord.Activity(type=discord.ActivityType.playing, name="/rate")
 )
 
 @bot.event
 async def on_ready():
-    print(f"{bot.user} is ready and online!")
-    print(Zufall)
+ print(f"{bot.user} is ready and online!")
+ print(Zufall)
 
 @bot.slash_command(name="rate", description="Rate eine Zahl")
 async def rate(ctx, zahl: discord.Option(discord.SlashCommandOptionType.integer)):
-    global Zufall
-    global Versuche
+    user = ctx.author
+    user_id = user.id
+    global Zufall, got4, Versuche
     if zahl < Zufall:
         await ctx.respond("Zu Klein")
         Versuche = Versuche + 1
@@ -36,7 +41,17 @@ async def rate(ctx, zahl: discord.Option(discord.SlashCommandOptionType.integer)
             else:
                 await ctx.send("Die Zahl ist kleiner als 50")
     if zahl == Zufall:
+        for row in c.execute(f"SELECT score FROM score WHERE id='{user_id}'"):
+            got = f"{row}"
+            got1 = got.replace(")", "")
+            got2 = got1.replace(",", "")
+            got3 = got2.replace("(", "")
+            got4 = int(got3)
+        c.execute(f"DELETE FROM score WHERE id='{user_id}'")
+        c.execute(f"INSERT INTO score VALUES ({user_id}, {got4 + 1})")
+        conn.commit()
         await ctx.respond("Richtig!!")
+        Versuche = Versuche + 1
         await ctx.send(f"Du hast {Versuche} mal Geraten")
         Versuche = 0
         Zufall = random.randint(1, 100)
@@ -50,5 +65,21 @@ async def regeln(ctx):
 @bot.slash_command(name="github", description="Zeigt die GitHub Page vom Bot")
 async def github(ctx):
     await ctx.respond("Hier ist meine Github Page: https://github.com/Kokoio01/Zahlenspielbot")
+
+@bot.slash_command(name="score", description="Zeigt den Score an")
+async def score(ctx, user: Option(discord.User, "User", required=False)):
+    member = user or ctx.author
+    member_id = member.id
+    global get4
+    for row in c.execute(f"SELECT score FROM score WHERE id='{member_id}'"):
+        get = f"{row}"
+        get1 = get.replace(")", "")
+        get2 = get1.replace(",", "")
+        get3 = get2.replace("(", "")
+        get4 = int(get3)
+    if get4 == 0:
+        await ctx.respond(f"{member} hat noch nie gespielt")
+    else:
+        await ctx.respond(f"{member} hat {get4} gewonnen")
 
 bot.run("...Bot Token...")
