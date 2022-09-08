@@ -13,6 +13,6 @@ Quick Start Guide:
 
 4.Install the py-cord library: pip install py-cord
 
-5. Create Score.json
+5.Run Setup.py
 
-5.Run the File
+6.Run main.py
