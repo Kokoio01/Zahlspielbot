@@ -9,7 +9,7 @@ Quick Start Guide:
 
 2.Add the Bot to your Guild
 
-3.Add the Bot Token at the end of the file
+3.Add the Bot Token in the bot directory in a file named Token.txt
 
 4.Install the py-cord library: pip install py-cord
 

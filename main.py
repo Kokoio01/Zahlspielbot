@@ -5,11 +5,11 @@ from discord.commands import Option
 from discord import Embed
 
 Regel = "Rate eine Zahl zwischen 1 und 100"
+Token = open("Token.txt")
 Zufall = random.randint(1, 100)
 Versuche = 0
 got4 = 0
 get4 = 0
-pic = 0
 conn = sqlite3.connect("Score.db")
 c = conn.cursor()
 bot = discord.Bot(
@@ -19,6 +19,7 @@ bot = discord.Bot(
 
 @bot.event
 async def on_ready():
+    Token.close()
     print(f"{bot.user} is ready and online!")
     print(Zufall)
 
@@ -64,7 +65,6 @@ async def rate(ctx, zahl: discord.Option(discord.SlashCommandOptionType.integer)
 
 
 @bot.slash_command(name="regeln", description="erklärt die Regeln")
-
 async def regeln(ctx):
     await ctx.respond(Regel)
 
@@ -97,4 +97,5 @@ async def score(ctx, user: Option(discord.User, "User", required=False)):
         score2.set_thumbnail(url=pfp)
         await ctx.respond(embed=score2)
 
-bot.run("...Token...")
+bot.run(Token.read())
+close()
