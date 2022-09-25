@@ -97,4 +97,4 @@ async def score(ctx, user: Option(discord.User, "User", required=False)):
         score2.set_thumbnail(url=pfp)
         await ctx.respond(embed=score2)
 
-bot.run("MTAxNDkxMDQyNDQ2Mzk3ODUzNg.GRj-Y-.3BLV8R-zygIlDaJ9Q4a-_bsynvy6V3Cr5oJxBA")
+bot.run("...Token...")
